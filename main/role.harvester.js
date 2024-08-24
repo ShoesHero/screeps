@@ -9,7 +9,14 @@ var roleHarvester = {
             }
         }
         else {
-            if(creep.transfer(Game.spawns['Spawn1'], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            if(Game.spawns['Spawn1'].getFreeCapacity() < 20)
+            {
+                var vacantExtention = _.filter(Game.structures, (Structure)=>Structure.structureType='extension' && (Structure.getFreeCapacity > 0))
+                if(creep.transfer(vacantExtention[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(vacantExtention[0]);
+                }
+            }
+            else if(creep.transfer(Game.spawns['Spawn1'], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(Game.spawns['Spawn1']);
             }
         }
