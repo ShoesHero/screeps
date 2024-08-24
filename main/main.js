@@ -12,7 +12,7 @@ module.exports.loop = function () {
     Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE],'harvester'+Math.floor(Math.random() * 10000),{memory:{role:'harvester'}})
     if(upgraders.length < 4)
     Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,MOVE],'upgrader'+Math.floor(Math.random() * 10000),{memory:{role:'upgrader'}})
-    if(builders.length<2)
+    if(builders.length<3)
     Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,CARRY,MOVE],'upgrader'+Math.floor(Math.random() * 10000),{memory:{role:'builder'}})
 
 
