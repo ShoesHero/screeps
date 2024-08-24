@@ -9,7 +9,7 @@ var roleHarvester = {
             }
         }
         else {
-            if(Game.spawns['Spawn1'].getFreeCapacity() < 20)
+            if(Game.spawns['Spawn1'].store.getFreeCapacity() < 20)
             {
                 var vacantExtention = _.filter(Game.structures, (Structure)=>Structure.structureType='extension' && (Structure.getFreeCapacity > 0))
                 if(creep.transfer(vacantExtention[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
