@@ -12,7 +12,7 @@ module.exports.loop = function () {
     Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,MOVE,MOVE],'harvester'+Math.floor(Math.random() * 10000),{memory:{role:'harvester'}})
     if(upgraders.length < 4)
     Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,WORK,CARRY,MOVE],'upgrader'+Math.floor(Math.random() * 10000),{memory:{role:'upgrader'}})
-    if(builders.length < 4)
+    if(Game.spawns['Spawn1'].pos.findClosestByRange(FIND_CONSTRUCTION_SITES) != null && builders.length < 2)
     Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,CARRY,MOVE],'upgrader'+Math.floor(Math.random() * 10000),{memory:{role:'builder'}})
 
 
