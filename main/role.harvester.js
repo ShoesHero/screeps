@@ -19,7 +19,7 @@ var roleHarvester = {
                 }
             }
             )
-            if (targets == null) {
+            if (targets.length == 0) {
                 creep.moveTo(38, 20);
             }
             else {
