@@ -8,7 +8,7 @@ module.exports.loop = function () {
     var tower = Game.getObjectById('66ca030f0aebc4f822885b9f');
     if (tower) {
         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => structure.hits < structure.hitsMax && structure.structureType == STRUCTURE_ROAD
+            filter: (structure) => structure.hits < 3500 && structure.structureType == STRUCTURE_ROAD
         });
         if (closestDamagedStructure) {
             tower.repair(closestDamagedStructure);
