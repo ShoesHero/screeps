@@ -9,7 +9,7 @@ module.exports.loop = function () {
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 
     if(harvesters.length < 4)
-    Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE],'harvester'+Math.floor(Math.random() * 10000),{memory:{role:'harvester'}})
+    Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,CARRY,CARRY,MOVE,MOVE],'harvester'+Math.floor(Math.random() * 10000),{memory:{role:'harvester', tempRole:''}})
     else if(upgraders.length < 4)
     Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,WORK,CARRY,MOVE],'upgrader'+Math.floor(Math.random() * 10000),{memory:{role:'upgrader'}})
     else if(Game.spawns['Spawn1'].pos.findClosestByRange(FIND_CONSTRUCTION_SITES) != null && builders.length < 2)
