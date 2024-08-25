@@ -12,6 +12,12 @@ var roleHarvester = {
         }
         else {
             creep.memory.output = 1;
+            if (creep.pos.findInRange(STRUCTURE_ROAD, 0, {
+                filter: function (object) {
+                    return object.hits < 3500;
+                }
+            }))
+            creep.repair(creep.pos);
                 var targets = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
