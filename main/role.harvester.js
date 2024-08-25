@@ -12,7 +12,7 @@ var roleHarvester = {
         }
         else {
             creep.memory.output = 1;
-            if (creep.pos.findInRange(STRUCTURE_ROAD, 0, {
+            if (creep.pos.findInRange(STRUCTURE_ROAD, 1, {
                 filter: function (object) {
                     return object.hits < 3500;
                 }
