@@ -18,8 +18,8 @@ var roleHarvester = {
                 }
             }
             )
-            if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(targets[0]);
+            if(creep.transfer(targets[targets.length-1], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(targets[targets.length-1]);
             }
             if(creep.store.getUsedCapacity() == 0)
             creep.memory.output=0;
