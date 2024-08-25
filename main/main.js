@@ -15,7 +15,7 @@ module.exports.loop = function () {
     else if(Game.spawns['Spawn1'].pos.findClosestByRange(FIND_CONSTRUCTION_SITES) != null && builders.length < 2)
     Game.spawns['Spawn1'].spawnCreep([WORK,WORK,CARRY,CARRY,CARRY,MOVE],'builder'+Math.floor(Math.random() * 10000),{memory:{role:'builder'}})
 
-    if(Game.spawns['Spawn1'].getFreeCapacity() == 0)
+    if(Game.spawns['Spawn1'].store.getFreeCapacity() == 0)
     {
         for(var creep in harvesters)
         {
