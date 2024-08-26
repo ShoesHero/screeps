@@ -8,7 +8,7 @@ var roleBuilder = {
                     return (structure.structureType == STRUCTURE_STORAGE)
                 }
             })
-            if (creep.withdraw(sources[0]) == ERR_NOT_IN_RANGE) {
+            if (creep.withdraw(sources[0],RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources[0]);
             }
         }
