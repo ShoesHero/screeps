@@ -12,23 +12,18 @@ var roleHarvester = {
         }
         else {
             creep.memory.output = 1;
-            var targets = creep.room.find(FIND_STRUCTURES, {
+            var targets = creep.room.findClosestByRange(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER) &&
+                    return (structure.structureType == STRUCTURE_CONTAINER) &&
                         structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
                 }
             }
             )
-            if (targets.length == 0) {
-                creep.moveTo(38, 20);
+            if (creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(targets[0]);
             }
-            else {
-                if (creep.transfer(targets[targets.length - 1], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[targets.length - 1]);
-                }
-                if (creep.store.getUsedCapacity() == 0)
-                    creep.memory.output = 0;
-            }
+            if (creep.store.getUsedCapacity() == 0)
+                creep.memory.output = 0;
 
         }
     }
