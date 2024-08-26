@@ -3,6 +3,7 @@ var roleUpgrader = require('role.upgrader');
 var roleUpgrader2 = require('role.upgrader2');
 var roleBuilder = require('role.builder');
 var roleTransfer = require('role.transfer');
+var roleWatcher = require('role.watcher');
 
 module.exports.loop = function () {
 
@@ -30,6 +31,7 @@ module.exports.loop = function () {
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     var upgraders2 = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader2');
     var transfers = _.filter(Game.creeps, (creep) => creep.memory.role == 'transfer');
+    var watchers = _.filter(Game.creeps, (creep) => creep.memory.role == 'watcher');
 
     if (harvesters.length < 2)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], 'harvester' + Math.floor(Math.random() * 10000), { memory: { role: 'harvester' } })
@@ -37,8 +39,10 @@ module.exports.loop = function () {
         Game.spawns['Spawn1'].spawnCreep([CARRY, CARRY, CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE], 'transfer' + Math.floor(Math.random() * 10000), { memory: { role: 'transfer' } })
     else if (upgraders.length < 4)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, WORK, CARRY, MOVE], 'upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader' } })
-    else if (Game.spawns['Spawn1'].pos.findClosestByRange(FIND_CONSTRUCTION_SITES) != null && builders.length < 4)
+    else if (Game.spawns['Spawn1'].pos.findClosestByRange(FIND_CONSTRUCTION_SITES) != null && builders.length < 2)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, MOVE], 'builder' + Math.floor(Math.random() * 10000), { memory: { role: 'builder' } })
+        else if (watchers.length < 1)
+        Game.spawns['Spawn1'].spawnCreep([MOVE], 'watcher' + Math.floor(Math.random() * 10000), { memory: { role: 'watcher' } })
     // else if (upgraders2.length < 4)
     //     Game.spawns['Spawn1'].spawnCreep([WORK, WORK,WORK,WORK, CARRY, CARRY, CARRY, MOVE,MOVE], '2upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader2' } })
 
@@ -70,6 +74,9 @@ module.exports.loop = function () {
         }
         if (creep.memory.role == 'builder') {
             roleBuilder.run(creep);
+        }
+        if (creep.memory.role == 'watcher') {
+            roleWatcher.run(creep);
         }
     }
 
