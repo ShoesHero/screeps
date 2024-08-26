@@ -1,6 +1,6 @@
 var roleTransfer = {
     run: function (creep) {
-        if (creep.store.getUsedCapacity() > 50) {
+        if (creep.store.getFreeCapacity() < 50) {
             var targets = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER) &&
@@ -30,7 +30,7 @@ var roleTransfer = {
                     return (structure.structureType == STRUCTURE_CONTAINER &&
                         structure.store.getUsedCapacity(RESOURCE_ENERGY) > 0);
                 }
-            });
+            })
             if (creep.withdraw(containers[0]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(containers[0]);
             }
