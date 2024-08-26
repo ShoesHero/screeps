@@ -42,33 +42,36 @@ module.exports.loop = function () {
     // else if (upgraders2.length < 4)
     //     Game.spawns['Spawn1'].spawnCreep([WORK, WORK,WORK,WORK, CARRY, CARRY, CARRY, MOVE,MOVE], '2upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader2' } })
 
-    for (var creep in harvesters)
-        roleHarvester.run(Game.creeps[creep]);
-    for (var creep in builders)
-        roleBuilder.run(Game.creeps[creep]);
-    for (var creep in upgraders)
-        roleUpgrader.run(Game.creeps[creep]);
-    for (var creep in upgraders2)
-        roleUpgrader2.run(Game.creeps[creep]);
-    for (var creep in transfers)
-        roleTransfer.run(Game.creeps[creep]);
+    // for (var creep in harvesters)
+    //     roleHarvester.run(Game.creeps[creep]);
+    // for (var creep in builders)
+    //     roleBuilder.run(Game.creeps[creep]);
+    // for (var creep in upgraders)
+    //     roleUpgrader.run(Game.creeps[creep]);
+    // for (var creep in upgraders2)
+    //     roleUpgrader2.run(Game.creeps[creep]);
+    // for (var creep in transfers)
+    //     roleTransfer.run(Game.creeps[creep]);
 
 
-    // for (var name in Game.creeps) {
-    //     var creep = Game.creeps[name];
-    //     if (creep.memory.role == 'harvester') {
-    //         roleHarvester.run(creep);
-    //     }
-    //     if (creep.memory.role == 'upgrader') {
-    //         roleUpgrader.run(creep);
-    //     }
-    //     if (creep.memory.role == 'upgrader2') {
-    //         roleUpgrader2.run(creep);
-    //     }
-    //     if (creep.memory.role == 'builder') {
-    //         roleBuilder.run(creep);
-    //     }
-    // }
+    for (var name in Game.creeps) {
+        var creep = Game.creeps[name];
+        if (creep.memory.role == 'harvester') {
+            roleHarvester.run(creep);
+        }
+        if (creep.memory.role == 'upgrader') {
+            roleUpgrader.run(creep);
+        }
+        if (creep.memory.role == 'transfer') {
+            roleTransfer.run(creep);
+        }
+        if (creep.memory.role == 'upgrader2') {
+            roleUpgrader2.run(creep);
+        }
+        if (creep.memory.role == 'builder') {
+            roleBuilder.run(creep);
+        }
+    }
 
     if (Game.cpu.bucket == 10000)
         Game.cpu.generatePixel();
