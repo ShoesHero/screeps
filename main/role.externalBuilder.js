@@ -20,7 +20,7 @@ var roleExternalBuilder = {
         else {
             creep.memory.output = 1;
             if (creep.room.name == 'W49N2') {
-                            const target = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
+                const target = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
             if (creep.build(target) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(target);
             }
@@ -29,7 +29,7 @@ var roleExternalBuilder = {
             }
             else
             {
-                creep.moveTo(new RoomPosition(30, 1, 'W49N2'), { visualizePathStyle: { stroke: '#ffaa00' } })
+                creep.moveTo(new RoomPosition(30, 2, 'W49N2'), { visualizePathStyle: { stroke: '#ffaa00' } })
             }
 
         }
