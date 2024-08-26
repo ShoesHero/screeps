@@ -10,7 +10,7 @@ var roleBuilder = {
         }
         else {
             creep.memory.output=1;
-            const target = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
+            const target = creep.pos.find(FIND_CONSTRUCTION_SITES);
             if (creep.build(target) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(target);
             }

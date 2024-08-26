@@ -12,7 +12,7 @@ var roleHarvester = {
         }
         else {
             creep.memory.output = 1;
-            var targets = creep.room.findClosestByRange(FIND_STRUCTURES, {
+            var targets = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_CONTAINER) &&
                         structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
