@@ -25,6 +25,7 @@ var roleTransfer = {
             }
         }
         else{
+            console.log('else');
             var containers = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_CONTAINER &&
