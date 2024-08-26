@@ -5,6 +5,7 @@ var roleBuilder = require('role.builder');
 var roleTransfer = require('role.transfer');
 var roleWatcher = require('role.watcher');
 var  roleExternalBuilder= require('role.externalBuilder');
+var  rsalvager= require('role.salvager');
 
 module.exports.loop = function () {
 
@@ -76,6 +77,9 @@ module.exports.loop = function () {
         }
         if (creep.memory.role == 'eBuilder') {
             roleExternalBuilder.run(creep);
+        }
+        if (creep.memory.role == 'es') {
+            rsalvager.run(creep);
         }
     }
 
