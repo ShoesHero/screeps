@@ -37,3 +37,5 @@ var roleTransfer = {
         }
     }
 }
+
+module.exports = roleTransfer;
