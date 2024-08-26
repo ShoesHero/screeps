@@ -32,7 +32,7 @@ module.exports.loop = function () {
     var transfers = _.filter(Game.creeps, (creep) => creep.memory.role == 'transfer');
 
     if (harvesters.length < 2)
-        Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], 'harvester' + Math.floor(Math.random() * 10000), { memory: { role: 'harvester' } })
+        Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], 'harvester' + Math.floor(Math.random() * 10000), { memory: { role: 'harvester' } })
     else if (transfers.length < 2)
         Game.spawns['Spawn1'].spawnCreep([CARRY, CARRY, CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE], 'transfer' + Math.floor(Math.random() * 10000), { memory: { role: 'transfer' } })
     else if (upgraders.length < 4)

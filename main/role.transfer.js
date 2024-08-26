@@ -31,7 +31,6 @@ var roleTransfer = {
                         structure.store.getUsedCapacity(RESOURCE_ENERGY) > 0);
                 }
             })
-            console.log(containers.length);
             if (creep.withdraw(containers[0],RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(containers[0]);
             }
