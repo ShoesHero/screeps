@@ -33,7 +33,7 @@ module.exports.loop = function () {
 
     if (harvesters.length < 2)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], 'harvester' + Math.floor(Math.random() * 10000), { memory: { role: 'harvester' } })
-    else if (transfers.length < 1)
+    else if (transfers.length < 2)
         Game.spawns['Spawn1'].spawnCreep([CARRY, CARRY, CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE], 'transfer' + Math.floor(Math.random() * 10000), { memory: { role: 'transfer' } })
     else if (upgraders.length < 4)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, WORK, CARRY, MOVE], 'upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader' } })
