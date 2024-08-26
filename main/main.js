@@ -43,15 +43,15 @@ module.exports.loop = function () {
     //     Game.spawns['Spawn1'].spawnCreep([WORK, WORK,WORK,WORK, CARRY, CARRY, CARRY, MOVE,MOVE], '2upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader2' } })
 
     for (var creep in harvesters)
-        roleHarvester.run(creep);
+        roleHarvester.run(Game.creeps[creep]);
     for (var creep in builders)
-        roleBuilder.run(creep);
+        roleBuilder.run(Game.creeps[creep]);
     for (var creep in upgraders)
-        roleUpgrader.run(creep);
+        roleUpgrader.run(Game.creeps[creep]);
     for (var creep in upgraders2)
-        roleUpgrader2.run(creep);
+        roleUpgrader2.run(Game.creeps[creep]);
     for (var creep in transfers)
-        roleTransfer.run(creep);
+        roleTransfer.run(Game.creeps[creep]);
 
 
     // for (var name in Game.creeps) {
