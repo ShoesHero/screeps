@@ -32,7 +32,7 @@ var roleTransfer = {
                 }
             })
             console.log(containers.length);
-            if (creep.withdraw(containers[0]) == ERR_NOT_IN_RANGE) {
+            if (creep.withdraw(containers[0],RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(containers[0]);
             }
         }
