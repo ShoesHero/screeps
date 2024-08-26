@@ -1,14 +1,14 @@
 var roleTransfer = {
     run: function (creep) {
         if (creep.store.getUsedCapacity() > 50) {
-            var targets = creep.room.findClosestByRange(FIND_STRUCTURES, {
+            var targets = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER) &&
                         structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
                 }
             })
             if (targets.length == 0) {
-                var storage = creep.room.findClosestByRange(FIND_STRUCTURES, {
+                var storage = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_STORAGE &&
                             structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0);
@@ -25,7 +25,7 @@ var roleTransfer = {
             }
         }
         else{
-            var containers = creep.room.findClosestByRange(FIND_STRUCTURES, {
+            var containers = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_CONTAINER &&
                         structure.store.getUsedCapacity(RESOURCE_ENERGY) > 0);
