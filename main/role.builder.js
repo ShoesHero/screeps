@@ -3,9 +3,13 @@ var roleBuilder = {
     /** @param {Creep} creep **/
     run: function (creep) {
         if (creep.store.getFreeCapacity() > 0 && creep.memory.output == 0) {
-            var source = creep.room.findClosestByRange(STRUCTURE_STORAGE);
-            if (creep.withdraw(source) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(source);
+            var sources = creep.room.find(FIND_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_STORAGE)
+                }
+            })
+            if (creep.withdraw(sources[0]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[0]);
             }
         }
         else {
