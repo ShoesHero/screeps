@@ -25,13 +25,13 @@ var roleTransfer = {
             }
         }
         else{
-            console.log('else');
             var containers = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (structure.structureType == STRUCTURE_CONTAINER &&
                         structure.store.getUsedCapacity(RESOURCE_ENERGY) > 0);
                 }
             })
+            console.log(containers.length);
             if (creep.withdraw(containers[0]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(containers[0]);
             }
