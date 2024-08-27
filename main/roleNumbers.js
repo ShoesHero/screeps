@@ -1,12 +1,12 @@
 var N =
 {
-    nHarvester: 2,
-    nBuilder: 2,
-    nUpgrader : 4,
-    nTransfer: 2,
-    nEBuilder: 0,
-    nEHarvester: 1,
-    nSalvager: 2
+    Harvester: 2,
+    Builder: 2,
+    Upgrader : 4,
+    Transfer: 2,
+    EBuilder: 0,
+    EHarvester: 1,
+    Salvager: 2
 }
 
 

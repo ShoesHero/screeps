@@ -6,6 +6,7 @@ var roleTransfer = require('role.transfer');
 var roleWatcher = require('role.watcher');
 var roleExternalBuilder = require('role.externalBuilder');
 var rsalvager = require('role.salvager');
+var roleExternalHarvester = require('role.externalHarvester')
 var N = require('roleNumbers')
 
 module.exports.loop = function () {
@@ -33,14 +34,17 @@ module.exports.loop = function () {
     var transfers = _.filter(Game.creeps, (creep) => creep.memory.role == 'transfer');
     var watchers = _.filter(Game.creeps, (creep) => creep.memory.role == 'watcher');
     var ebuilders = _.filter(Game.creeps, (creep) => creep.memory.role == 'eBuilder');
+    var eHarvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'eHarvester');
 
-    if (harvesters.length < N.nHarvester)
+    if (harvesters.length < N.Harvester)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], 'harvester' + Math.floor(Math.random() * 10000), { memory: { role: 'harvester' } })
-    else if (transfers.length < N.nTransfer)
+    else if (transfers.length < N.Transfer)
         Game.spawns['Spawn1'].spawnCreep([CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], 'transfer' + Math.floor(Math.random() * 10000), { memory: { role: 'transfer' } })
-    else if (upgraders.length < N.nUpgrader)
+    else if (upgraders.length < N.Upgrader)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, WORK, CARRY, MOVE], 'upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader' } })
-    else if (Game.spawns['Spawn1'].pos.findClosestByRange(FIND_CONSTRUCTION_SITES) != null && builders.length < N.nBuilder)
+    else if (eHarvesters.length < N.EHarvester)
+        Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, WORK,WORK,WORK,MOVE,MOVE,MOVE,MOVE,MOVE, MOVE], 'eHarvesters' + Math.floor(Math.random() * 10000), { memory: { role: 'eHarvester' } })
+    else if (Game.spawns['Spawn1'].pos.findClosestByRange(FIND_CONSTRUCTION_SITES) != null && builders.length < N.Builder)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, MOVE], 'builder' + Math.floor(Math.random() * 10000), { memory: { role: 'builder' } })
     else if (ebuilders.length < N.EBuilder)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], 'eBuilder' + Math.floor(Math.random() * 10000), { memory: { role: 'eBuilder' } })
