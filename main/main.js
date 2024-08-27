@@ -83,6 +83,9 @@ module.exports.loop = function () {
         if (creep.memory.role == 'eBuilder') {
             roleExternalBuilder.run(creep);
         }
+        if (creep.memory.role == 'eHarvester') {
+            roleExternalHarvester.run(creep);
+        }
         if (creep.memory.role == 'es') {
             rsalvager.run(creep);
         }
