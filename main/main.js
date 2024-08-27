@@ -43,7 +43,7 @@ module.exports.loop = function () {
     else if (eHarvesters.length < N.EHarvester)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK,MOVE,MOVE, MOVE], 'eHarvester' + Math.floor(Math.random() * 10000), { memory: { role: 'eHarvester' } })
     else if (eTransfers.length < N.ETransfer)
-        Game.spawns['Spawn1'].spawnCreep([CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE, MOVE], 'eTransfer' + Math.floor(Math.random() * 10000), { memory: { role: 'eTransfer' } })
+        Game.spawns['Spawn1'].spawnCreep([WORK, CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE, MOVE], 'eTransfer' + Math.floor(Math.random() * 10000), { memory: { role: 'eTransfer' } })
     else if (Game.spawns['Spawn1'].pos.findClosestByRange(FIND_CONSTRUCTION_SITES) != null && builders.length < N.Builder)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, MOVE], 'builder' + Math.floor(Math.random() * 10000), { memory: { role: 'builder' } })
     else if (ebuilders.length < N.EBuilder)
