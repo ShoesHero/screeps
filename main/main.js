@@ -6,6 +6,7 @@ var roleTransfer = require('role.transfer');
 var roleWatcher = require('role.watcher');
 var  roleExternalBuilder= require('role.externalBuilder');
 var  rsalvager= require('role.salvager');
+import {N} from 'roleNumbers.js'
 
 module.exports.loop = function () {
 
@@ -33,7 +34,7 @@ module.exports.loop = function () {
     var watchers = _.filter(Game.creeps, (creep) => creep.memory.role == 'watcher');
     var ebuilders = _.filter(Game.creeps, (creep) => creep.memory.role == 'eBuilder');
 
-    if (harvesters.length < 2)
+    if (harvesters.length < N.nHarvester)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], 'harvester' + Math.floor(Math.random() * 10000), { memory: { role: 'harvester' } })
     else if (transfers.length < 2)
         Game.spawns['Spawn1'].spawnCreep([CARRY, CARRY, CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE], 'transfer' + Math.floor(Math.random() * 10000), { memory: { role: 'transfer' } })
@@ -41,7 +42,7 @@ module.exports.loop = function () {
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, WORK, CARRY, MOVE], 'upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader' } })
     else if (Game.spawns['Spawn1'].pos.findClosestByRange(FIND_CONSTRUCTION_SITES) != null && builders.length < 2)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, MOVE], 'builder' + Math.floor(Math.random() * 10000), { memory: { role: 'builder' } })
-    else if (ebuilders.length < 4)
+    else if (ebuilders.length < 0)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY,CARRY, MOVE,MOVE], 'eBuilder' + Math.floor(Math.random() * 10000), { memory: { role: 'eBuilder' } })
     // else if (upgraders2.length < 4)
     //     Game.spawns['Spawn1'].spawnCreep([WORK, WORK,WORK,WORK, CARRY, CARRY, CARRY, MOVE,MOVE], '2upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader2' } })

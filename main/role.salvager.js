@@ -7,7 +7,6 @@ var role = {
             if (creep.pickup(drope[0], RESOURCES_ALL) == ERR_NOT_IN_RANGE) {  // 指定资源类型
                 creep.moveTo(drope[0], { visualizePathStyle: { stroke: '#ffaa00' } });
             }
-            console.log('开始拾荒');
         }
 
         if (creep.store.getUsedCapacity() > 0) {
