@@ -1,7 +1,16 @@
 var roleExternalTransfer = {
     run: function (creep) {
         if (creep.store.getUsedCapacity() > 0) {
-            if(creep.room.name == 'W49N3')
+            
+            var damagedStructures = creep.pos.findInRange(FIND_STRUCTURES, 1,{
+                filter: (structure) => structure.hits / structure.hitsMax < 0.6 && (structure.structureType != STRUCTURE_WALL)
+            });
+            if (damagedStructures.length != 0) {
+                creep.repair(damagedStructures[0]);
+            }
+            else
+            {
+                if(creep.room.name == 'W49N3')
             {
                 var storage = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
@@ -16,6 +25,11 @@ var roleExternalTransfer = {
             else{
                 creep.moveTo(new RoomPosition(30, 49, 'W49N3'), { visualizePathStyle: { stroke: '#ffaa00' } })
             }
+            }
+
+
+            
+            
         }
         else{
             if(creep.room.name == 'W49N2')
