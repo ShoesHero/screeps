@@ -6,7 +6,7 @@ var roleTransfer = require('role.transfer');
 var roleWatcher = require('role.watcher');
 var roleExternalBuilder = require('role.externalBuilder');
 var rsalvager = require('role.salvager');
-require('roleNumbers')
+var N = require('roleNumbers')
 
 module.exports.loop = function () {
 

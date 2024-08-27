@@ -1,11 +1,12 @@
+var N =
+{
+    nHarvester: 2,
+    nBuilder: 2,
+    nTransfer: 2,
+    nEBuilder: 2,
+    nEHarvester: 1,
+    nSalvager: 2
+}
 
 
-var N = new Object();
-N.nHarvester = 2;
-N.nBuilder = 2;
-N.nTransfer = 2;
-N.nEBuilder = 2;
-N.nEHarvester = 1;
-N.nSalvager = 2;
-
-module.exports=N;
+module.exports = N;
