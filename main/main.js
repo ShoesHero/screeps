@@ -5,6 +5,7 @@ var roleTransfer = require('role.transfer');
 var roleExternalBuilder = require('role.externalBuilder');
 var rsalvager = require('role.salvager');
 var roleExternalHarvester = require('role.externalHarvester')
+var roleExternalTransfer = require('role.externalTransfer')
 var N = require('roleNumbers')
 
 module.exports.loop = function () {
@@ -31,6 +32,7 @@ module.exports.loop = function () {
     var transfers = _.filter(Game.creeps, (creep) => creep.memory.role == 'transfer');
     var ebuilders = _.filter(Game.creeps, (creep) => creep.memory.role == 'eBuilder');
     var eHarvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'eHarvester');
+    var eTransfers = _.filter(Game.creeps, (creep) => creep.memory.role == 'eTransfer');
 
     if (harvesters.length < N.Harvester)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], 'harvester' + Math.floor(Math.random() * 10000), { memory: { role: 'harvester' } })
@@ -39,7 +41,9 @@ module.exports.loop = function () {
     else if (upgraders.length < N.Upgrader)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, WORK, CARRY, MOVE], 'upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader' } })
     else if (eHarvesters.length < N.EHarvester)
-        Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK,MOVE,MOVE, MOVE], 'eHarvesters' + Math.floor(Math.random() * 10000), { memory: { role: 'eHarvester' } })
+        Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK,MOVE,MOVE, MOVE], 'eHarvester' + Math.floor(Math.random() * 10000), { memory: { role: 'eHarvester' } })
+    else if (eTransfers.length < N.ETransfer)
+        Game.spawns['Spawn1'].spawnCreep([CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE, MOVE], 'eTransfer' + Math.floor(Math.random() * 10000), { memory: { role: 'eTransfer' } })
     else if (Game.spawns['Spawn1'].pos.findClosestByRange(FIND_CONSTRUCTION_SITES) != null && builders.length < N.Builder)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, MOVE], 'builder' + Math.floor(Math.random() * 10000), { memory: { role: 'builder' } })
     else if (ebuilders.length < N.EBuilder)
@@ -65,6 +69,9 @@ module.exports.loop = function () {
         }
         else if (creep.memory.role == 'eHarvester') {
             roleExternalHarvester.run(creep);
+        }
+        else if (creep.memory.role == 'eTransfer') {
+            roleExternalTransfer.run(creep);
         }
         else if (creep.memory.role == 'es') {
             rsalvager.run(creep);

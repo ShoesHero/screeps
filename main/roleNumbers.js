@@ -6,7 +6,8 @@ var N =
     Transfer: 2,
     EBuilder: 0,
     EHarvester: 1,
-    Salvager: 2
+    Salvager: 2,
+    ETransfer : 2
 }
 
 
