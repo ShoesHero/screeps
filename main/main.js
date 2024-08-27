@@ -1,5 +1,6 @@
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
+var roleUpgrader2 = require('role.upgrader2');
 var roleBuilder = require('role.builder');
 var roleTransfer = require('role.transfer');
 var roleExternalBuilder = require('role.externalBuilder');
@@ -29,6 +30,7 @@ module.exports.loop = function () {
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
+    var upgrader2s = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     var transfers = _.filter(Game.creeps, (creep) => creep.memory.role == 'transfer');
     var ebuilders = _.filter(Game.creeps, (creep) => creep.memory.role == 'eBuilder');
     var eHarvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'eHarvester');
@@ -48,6 +50,8 @@ module.exports.loop = function () {
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, MOVE], 'builder' + Math.floor(Math.random() * 10000), { memory: { role: 'builder' } })
     else if (ebuilders.length < N.EBuilder)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], 'eBuilder' + Math.floor(Math.random() * 10000), { memory: { role: 'eBuilder' } })
+    else if (upgrader2s.length < N.Upgrader2)
+        Game.spawns['Spawn1'].spawnCreep([WORK, WORK,WORK,WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE,MOVE,MOVE], '2upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader2' } })
 
 
     for (var name in Game.creeps) {
@@ -75,6 +79,9 @@ module.exports.loop = function () {
         }
         else if (creep.memory.role == 'es') {
             rsalvager.run(creep);
+        }
+        else if (creep.memory.role == 'upgrader2') {
+            roleUpgrader2.run(creep);
         }
     }
 

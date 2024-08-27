@@ -3,6 +3,7 @@ var N =
     Harvester: 2,
     Builder: 1,
     Upgrader : 4,
+    Upgrader2 : 4,
     Transfer: 2,
     EBuilder: 0,
     EHarvester: 1,
