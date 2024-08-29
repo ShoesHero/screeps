@@ -7,6 +7,7 @@ var roleExternalBuilder = require('role.externalBuilder');
 var rsalvager = require('role.salvager');
 var roleExternalHarvester = require('role.externalHarvester')
 var roleExternalTransfer = require('role.externalTransfer')
+var roleMelee = require('role.melee')
 var N = require('roleNumbers')
 
 module.exports.loop = function () {
@@ -30,7 +31,7 @@ module.exports.loop = function () {
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-    var upgrader2s = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
+    var upgrader2s = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader2');
     var transfers = _.filter(Game.creeps, (creep) => creep.memory.role == 'transfer');
     var ebuilders = _.filter(Game.creeps, (creep) => creep.memory.role == 'eBuilder');
     var eHarvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'eHarvester');
@@ -82,6 +83,9 @@ module.exports.loop = function () {
         }
         else if (creep.memory.role == 'upgrader2') {
             roleUpgrader2.run(creep);
+        }
+        else if (creep.memory.role == 'melee') {
+            roleMelee.run(creep);
         }
     }
 
