@@ -6,9 +6,9 @@ var N =
     Upgrader2 : 0,
     Transfer: 2,
     EBuilder: 0,
-    EHarvester: 0,
+    EHarvester: 1,
     Salvager: 0,
-    ETransfer : 0
+    ETransfer : 4
 }
 
 
