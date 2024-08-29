@@ -5,7 +5,7 @@ var N =
     Upgrader : 4,
     Upgrader2 : 0,
     Transfer: 2,
-    EBuilder: 0,
+    EBuilder: 3,
     EHarvester: 1,
     Salvager: 0,
     ETransfer : 4
