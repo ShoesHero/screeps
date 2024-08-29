@@ -8,6 +8,7 @@ var rsalvager = require('role.salvager');
 var roleExternalHarvester = require('role.externalHarvester')
 var roleExternalTransfer = require('role.externalTransfer')
 var roleMelee = require('role.melee')
+var roleClaimmer = require('role.claimmer')
 var N = require('roleNumbers')
 
 module.exports.loop = function () {
@@ -86,6 +87,9 @@ module.exports.loop = function () {
         }
         else if (creep.memory.role == 'melee') {
             roleMelee.run(creep);
+        }
+        else if (creep.memory.role == 'claimmer') {
+            roleClaimmer.run(creep);
         }
     }
 
