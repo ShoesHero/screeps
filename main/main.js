@@ -11,6 +11,7 @@ var roleMelee = require('role.melee')
 var roleClaimmer = require('role.claimmer')
 var N = require('roleNumbers');
 const roleBasicHarvester = require('./role.basicharvester');
+const roleBasicBuilder = require('./role.basicBuilder');
 
 module.exports.loop = function () {
 
@@ -39,6 +40,7 @@ module.exports.loop = function () {
     var eHarvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'eHarvester');
     var eTransfers = _.filter(Game.creeps, (creep) => creep.memory.role == 'eTransfer');
     var bH = _.filter(Game.creeps, (creep) => creep.memory.role == 'bH');
+    var bB = _.filter(Game.creeps, (creep) => creep.memory.role == 'bB');
 
     if (harvesters.length < N.Harvester)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], 'harvester' + Math.floor(Math.random() * 10000), { memory: { role: 'harvester' } })
@@ -61,6 +63,8 @@ module.exports.loop = function () {
 
     if(bH.length < 2)
         Game.spawns['Spawn2'].spawnCreep([WORK, WORK, CARRY, MOVE], 'bH' + Math.floor(Math.random() * 10000), { memory: { role: 'bH' } })
+    else if(bB.length < 2)
+        Game.spawns['Spawn2'].spawnCreep([WORK, WORK, CARRY, MOVE], 'bB' + Math.floor(Math.random() * 10000), { memory: { role: 'bB' } })
     
 
     for (var name in Game.creeps) {
@@ -97,6 +101,9 @@ module.exports.loop = function () {
         }
         else if (creep.memory.role == 'bH') {
             roleBasicHarvester.run(creep);
+        }
+        else if (creep.memory.role == 'bB') {
+            roleBasicBuilder.run(creep);
         }
     }
 
