@@ -9,7 +9,8 @@ var roleExternalHarvester = require('role.externalHarvester')
 var roleExternalTransfer = require('role.externalTransfer')
 var roleMelee = require('role.melee')
 var roleClaimmer = require('role.claimmer')
-var N = require('roleNumbers')
+var N = require('roleNumbers');
+const roleBasicHarvester = require('./role.basicharvester');
 
 module.exports.loop = function () {
 
@@ -37,6 +38,7 @@ module.exports.loop = function () {
     var ebuilders = _.filter(Game.creeps, (creep) => creep.memory.role == 'eBuilder');
     var eHarvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'eHarvester');
     var eTransfers = _.filter(Game.creeps, (creep) => creep.memory.role == 'eTransfer');
+    var bH = _.filter(Game.creeps, (creep) => creep.memory.role == 'bH');
 
     if (harvesters.length < N.Harvester)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], 'harvester' + Math.floor(Math.random() * 10000), { memory: { role: 'harvester' } })
@@ -55,6 +57,11 @@ module.exports.loop = function () {
     else if (upgrader2s.length < N.Upgrader2)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK,WORK,WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE,MOVE,MOVE], '2upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader2' } })
 
+
+
+    if(bH.length < 2)
+        Game.spawns['Spawn2'].spawnCreep([WORK, WORK, CARRY, MOVE], 'bH' + Math.floor(Math.random() * 10000), { memory: { role: 'bH' } })
+    
 
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
@@ -82,14 +89,14 @@ module.exports.loop = function () {
         else if (creep.memory.role == 'es') {
             rsalvager.run(creep);
         }
-        else if (creep.memory.role == 'upgrader2') {
-            roleUpgrader2.run(creep);
-        }
         else if (creep.memory.role == 'melee') {
             roleMelee.run(creep);
         }
         else if (creep.memory.role == 'claimmer') {
             roleClaimmer.run(creep);
+        }
+        else if (creep.memory.role == 'bH') {
+            roleBasicHarvester.run(creep);
         }
     }
 
