@@ -12,6 +12,7 @@ var roleClaimmer = require('role.claimmer')
 var N = require('roleNumbers');
 const roleBasicHarvester = require('./role.basicharvester');
 const roleBasicBuilder = require('./role.basicBuilder');
+const roleMiner = require('./role.miner');
 
 module.exports.loop = function () {
 
@@ -39,6 +40,7 @@ module.exports.loop = function () {
     var ebuilders = _.filter(Game.creeps, (creep) => creep.memory.role == 'eBuilder');
     var eHarvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'eHarvester');
     var eTransfers = _.filter(Game.creeps, (creep) => creep.memory.role == 'eTransfer');
+    var miners = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner');
     var bH = _.filter(Game.creeps, (creep) => creep.memory.role == 'bH');
     var bB = _.filter(Game.creeps, (creep) => creep.memory.role == 'bB');
 
@@ -46,6 +48,8 @@ module.exports.loop = function () {
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], 'harvester' + Math.floor(Math.random() * 10000), { memory: { role: 'harvester' } })
     else if (transfers.length < N.Transfer)
         Game.spawns['Spawn1'].spawnCreep([CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], 'transfer' + Math.floor(Math.random() * 10000), { memory: { role: 'transfer' } })
+    else if (miners.length < N.Miner)
+        Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], 'miner' + Math.floor(Math.random() * 10000), { memory: { role: 'miner' } })
     else if (upgraders.length < N.Upgrader)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, WORK, CARRY, MOVE], 'upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader' } })
     else if (eHarvesters.length < N.EHarvester)
@@ -65,6 +69,8 @@ module.exports.loop = function () {
         Game.spawns['Spawn2'].spawnCreep([WORK, WORK, CARRY, MOVE], 'bH' + Math.floor(Math.random() * 10000), { memory: { role: 'bH' } })
     else if(bB.length < 2)
         Game.spawns['Spawn2'].spawnCreep([WORK, WORK, CARRY, MOVE], 'bB' + Math.floor(Math.random() * 10000), { memory: { role: 'bB' } })
+        else if (upgraders.length < N.Upgrader + 3 && upgraders.length > N.Upgrader)
+        Game.spawns['Spawn2'].spawnCreep([WORK, WORK, CARRY, MOVE], 'upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader' } })
     
 
     for (var name in Game.creeps) {
@@ -104,6 +110,9 @@ module.exports.loop = function () {
         }
         else if (creep.memory.role == 'bB') {
             roleBasicBuilder.run(creep);
+        }
+        else if (creep.memory.role == 'miner') {
+            roleMiner.run(creep);
         }
     }
 

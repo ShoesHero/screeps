@@ -8,7 +8,11 @@ var N =
     EBuilder: 0,
     EHarvester: 0,
     Salvager: 0,
-    ETransfer : 0
+    ETransfer : 0,
+    Miner : 1
+
+
+
 }
 
 
