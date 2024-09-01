@@ -1,7 +1,7 @@
 var roleMelee = {
     run: function (creep) {
         if (creep.room.name == 'W46N3') {
-            var enemy = creep.room.find(FIND_HOSTILE_STRUCTURES, {filter: { structureType: STRUCTURE_SPAWN }});
+            var enemy = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
             if (creep.attack(enemy[0]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(enemy[0]);
             }
