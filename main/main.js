@@ -31,6 +31,21 @@ module.exports.loop = function () {
             tower.attack(closestHostile);
         }
     }
+    
+    var tower = Game.getObjectById('66cd4d55d895956b12dd8ad4');
+    if (tower) {
+        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
+            filter: (structure) => structure.hits / structure.hitsMax < 0.5 && (structure.structureType != STRUCTURE_WALL)
+        });
+        if (closestDamagedStructure) {
+            tower.repair(closestDamagedStructure);
+        }
+
+        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        if (closestHostile) {
+            tower.attack(closestHostile);
+        }
+    }
 
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
@@ -49,7 +64,7 @@ module.exports.loop = function () {
 
     var upgrader2 = _.filter(Game.creeps, (creep) => (creep.memory.role == 'upgrader' && creep.room.name == 'W46N3'));
 
-    if (harvesters.length < N.Filler)
+    if (filler.length < N.Filler)
         Game.spawns['Spawn1'].spawnCreep([CARRY, CARRY,CARRY, MOVE, MOVE, MOVE], 'filler' + Math.floor(Math.random() * 10000), { memory: { role: 'filler' } })
     if (harvesters.length < N.Harvester)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], 'harvester' + Math.floor(Math.random() * 10000), { memory: { role: 'harvester' } })
@@ -66,7 +81,7 @@ module.exports.loop = function () {
     else if (Game.spawns['Spawn1'].pos.findClosestByRange(FIND_CONSTRUCTION_SITES) != null && builders.length < N.Builder)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, MOVE], 'builder' + Math.floor(Math.random() * 10000), { memory: { role: 'builder' } })
     else if (ebuilders.length < N.EBuilder)
-        Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], 'eBuilder' + Math.floor(Math.random() * 10000), { memory: { role: 'eBuilder' } })
+        Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK,WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], 'eBuilder' + Math.floor(Math.random() * 10000), { memory: { role: 'eBuilder' } })
 
 
 
