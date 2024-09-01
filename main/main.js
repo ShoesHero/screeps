@@ -34,8 +34,8 @@ module.exports.loop = function () {
 
     var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
     var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-    var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-    var upgrader2s = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader2');
+    var upgrader1 = _.filter(Game.creeps, (creep) => (creep.memory.role == 'upgrader' && creep.room.name == 'W49N3'));
+
     var transfers = _.filter(Game.creeps, (creep) => creep.memory.role == 'transfer');
     var ebuilders = _.filter(Game.creeps, (creep) => creep.memory.role == 'eBuilder');
     var eHarvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'eHarvester');
@@ -44,34 +44,38 @@ module.exports.loop = function () {
     var bH = _.filter(Game.creeps, (creep) => creep.memory.role == 'bH');
     var bB = _.filter(Game.creeps, (creep) => creep.memory.role == 'bB');
 
+
+    var upgrader2 = _.filter(Game.creeps, (creep) => (creep.memory.role == 'upgrader' && creep.room.name == 'W46N3'));
+
+
     if (harvesters.length < N.Harvester)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], 'harvester' + Math.floor(Math.random() * 10000), { memory: { role: 'harvester' } })
     else if (transfers.length < N.Transfer)
         Game.spawns['Spawn1'].spawnCreep([CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], 'transfer' + Math.floor(Math.random() * 10000), { memory: { role: 'transfer' } })
     else if (miners.length < N.Miner)
-        Game.spawns['Spawn1'].spawnCreep([WORK,WORK,WORK,WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], 'miner' + Math.floor(Math.random() * 10000), { memory: { role: 'miner' } })
-    else if (upgraders.length < N.Upgrader)
+        Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], 'miner' + Math.floor(Math.random() * 10000), { memory: { role: 'miner' } })
+    else if (upgrader1.length < N.Upgrader)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, WORK, CARRY, MOVE], 'upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader' } })
     else if (eHarvesters.length < N.EHarvester)
-        Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK,MOVE,MOVE, MOVE], 'eHarvester' + Math.floor(Math.random() * 10000), { memory: { role: 'eHarvester' } })
+        Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, MOVE, MOVE, MOVE], 'eHarvester' + Math.floor(Math.random() * 10000), { memory: { role: 'eHarvester' } })
     else if (eTransfers.length < N.ETransfer)
-        Game.spawns['Spawn1'].spawnCreep([WORK, CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE, MOVE], 'eTransfer' + Math.floor(Math.random() * 10000), { memory: { role: 'eTransfer' } })
+        Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], 'eTransfer' + Math.floor(Math.random() * 10000), { memory: { role: 'eTransfer' } })
     else if (Game.spawns['Spawn1'].pos.findClosestByRange(FIND_CONSTRUCTION_SITES) != null && builders.length < N.Builder)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, MOVE], 'builder' + Math.floor(Math.random() * 10000), { memory: { role: 'builder' } })
     else if (ebuilders.length < N.EBuilder)
-        Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE,MOVE,MOVE,MOVE,MOVE, MOVE], 'eBuilder' + Math.floor(Math.random() * 10000), { memory: { role: 'eBuilder' } })
+        Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], 'eBuilder' + Math.floor(Math.random() * 10000), { memory: { role: 'eBuilder' } })
     else if (upgrader2s.length < N.Upgrader2)
-        Game.spawns['Spawn1'].spawnCreep([WORK, WORK,WORK,WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE,MOVE,MOVE], '2upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader2' } })
+        Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], '2upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader2' } })
 
 
 
-    if(bH.length < 2)
+    if (bH.length < 2)
         Game.spawns['Spawn2'].spawnCreep([WORK, WORK, CARRY, MOVE], 'bH' + Math.floor(Math.random() * 10000), { memory: { role: 'bH' } })
-    else if(bB.length < 2)
+    else if (bB.length < 2)
         Game.spawns['Spawn2'].spawnCreep([WORK, WORK, CARRY, MOVE], 'bB' + Math.floor(Math.random() * 10000), { memory: { role: 'bB' } })
-        else if (upgraders.length < N.Upgrader + 3 && upgraders.length > N.Upgrader)
+    else if (upgrader2, length < 4)
         Game.spawns['Spawn2'].spawnCreep([WORK, WORK, CARRY, MOVE], 'upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader' } })
-    
+
 
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
@@ -118,6 +122,6 @@ module.exports.loop = function () {
 
     if (Game.cpu.bucket == 10000)
         Game.cpu.generatePixel();
-    
+
 
 }
