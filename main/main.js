@@ -13,6 +13,7 @@ var N = require('roleNumbers');
 const roleBasicHarvester = require('./role.basicharvester');
 const roleBasicBuilder = require('./role.basicBuilder');
 const roleMiner = require('./role.miner');
+const roleFiller = require('./role.filler');
 
 module.exports.loop = function () {
 
@@ -43,11 +44,13 @@ module.exports.loop = function () {
     var miners = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner');
     var bH = _.filter(Game.creeps, (creep) => creep.memory.role == 'bH');
     var bB = _.filter(Game.creeps, (creep) => creep.memory.role == 'bB');
+    var filler  = _.filter(Game.creeps, (creep) => creep.memory.role == 'filler');
 
 
     var upgrader2 = _.filter(Game.creeps, (creep) => (creep.memory.role == 'upgrader' && creep.room.name == 'W46N3'));
 
-
+    if (harvesters.length < N.Filler)
+        Game.spawns['Spawn1'].spawnCreep([CARRY, CARRY,CARRY, MOVE, MOVE, MOVE], 'filler' + Math.floor(Math.random() * 10000), { memory: { role: 'filler' } })
     if (harvesters.length < N.Harvester)
         Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], 'harvester' + Math.floor(Math.random() * 10000), { memory: { role: 'harvester' } })
     else if (transfers.length < N.Transfer)
@@ -115,6 +118,9 @@ module.exports.loop = function () {
         }
         else if (creep.memory.role == 'miner') {
             roleMiner.run(creep);
+        }
+        else if (creep.memory.role == 'filler') {
+            roleFiller.run(creep);
         }
     }
 

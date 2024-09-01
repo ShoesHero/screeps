@@ -1,7 +1,7 @@
 var roleMiner = {
     run: function(creep){
-        if (creep.store.getFreeCapacity() > 0 && creep.memory.output == 0) {
-            var mine = creep.room.find(STRUCTURE_EXTRACTOR);
+        if (creep.store.getFreeCapacity() > 0 && creep.memory.output == 0 && creep.ticksToLive > 30) {
+            var mine = creep.room.find(FIND_MINERALS);
             if (creep.harvest(mine[0]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(mine[0]);
             }
