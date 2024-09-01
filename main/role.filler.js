@@ -8,12 +8,10 @@ var roleFiller =
                         structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
                 }
             })
-
-            if (creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(targets[0]);
+            if (creep.transfer(targets, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(targets);
             }
         }
-
         else {
             var containers = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
