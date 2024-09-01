@@ -71,7 +71,7 @@ module.exports.loop = function () {
         Game.spawns['Spawn2'].spawnCreep([WORK, WORK, CARRY, MOVE], 'bH' + Math.floor(Math.random() * 10000), { memory: { role: 'bH' } })
     else if (bB.length < 2)
         Game.spawns['Spawn2'].spawnCreep([WORK, WORK, CARRY, MOVE], 'bB' + Math.floor(Math.random() * 10000), { memory: { role: 'bB' } })
-    else if (upgrader2, length < 4)
+    else if (upgrader2.length < 4)
         Game.spawns['Spawn2'].spawnCreep([WORK, WORK, CARRY, MOVE], 'upgrader' + Math.floor(Math.random() * 10000), { memory: { role: 'upgrader' } })
 
 
